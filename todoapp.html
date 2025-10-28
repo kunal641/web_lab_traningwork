@@ -1,0 +1,172 @@
+<!--Create a todolist app with the help of javascript-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>To-Do List App</title>
+
+<!-- ===== CSS Styling Section ===== -->
+<style>
+    /* Overall page style */
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background-color: #fff;
+        margin: 50px;
+    }
+
+    /* Input box styling */
+    input[type="text"] {
+        padding: 10px;
+        width: 250px;
+        border: 2px solid green;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    /* General button styling */
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    /* “Add Task” button style */
+    #addTaskBtn {
+        background-color: pink;
+        font-weight: bold;
+        color: #333;
+        margin-left: 10px;
+    }
+
+    /* Task list (unordered list) styling */
+    ul {
+        list-style-type: none; /* Removes default bullets */
+        padding: 0;
+        margin-top: 20px;
+    }
+
+    /* Each list item (task) box styling */
+    li {
+        display: flex; /* Arrange items in one row */
+        justify-content: space-between; /* Space between task name and buttons */
+        align-items: center;
+        border: 1px solid blue;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+
+    /* Task name text */
+    .task-name {
+        font-weight: bold;
+        font-size: 18px;
+        color: blue;
+    }
+
+    /* “Mark as Complete” button style */
+    .complete-btn {
+        background-color: green;
+        color: white;
+        margin-right: 10px;
+    }
+
+    /* “Delete” button style */
+    .delete-btn {
+        background-color: red;
+        color: white;
+    }
+
+    /* Style for completed task (line-through) */
+    .completed {
+        text-decoration: line-through;
+        color: gray;
+    }
+</style>
+</head>
+
+<body>
+
+    <!-- ===== HTML Structure ===== -->
+
+    <h2>To-Do List App</h2>
+
+    <!-- Input box for task name -->
+    <input type="text" id="taskInput" placeholder="Enter task name...">
+    
+    <!-- Add Task button -->
+    <button id="addTaskBtn">Add Task</button>
+
+    <!-- Unordered list to hold all tasks -->
+    <ul id="taskList"></ul>
+
+<!-- ===== JavaScript Section ===== -->
+<script>
+    // Get references to HTML elements
+    const addTaskBtn = document.getElementById("addTaskBtn");
+    const taskInput = document.getElementById("taskInput");
+    const taskList = document.getElementById("taskList");
+
+    // Add event listener on "Add Task" button
+    addTaskBtn.addEventListener("click", addTask);
+
+    // ===== Function to Add a New Task =====
+    function addTask() {
+        // Get the text from input and remove extra spaces
+        const taskText = taskInput.value.trim();
+
+        // Check if input is empty
+        if (taskText === "") {
+            alert("Please enter a task name!");
+            return; // stop if no text entered
+        }
+
+        // Create a new <li> element for the task
+        const li = document.createElement("li");
+
+        // Create a <span> element to hold the task name
+        const taskSpan = document.createElement("span");
+        taskSpan.textContent = taskText; // set text
+        taskSpan.className = "task-name"; // add CSS class
+
+        // Create the “Mark as Complete” button
+        const completeBtn = document.createElement("button");
+        completeBtn.textContent = "Mark as Complete";
+        completeBtn.className = "complete-btn";
+
+        // When complete button is clicked → toggle completed style
+        completeBtn.onclick = () => {
+            taskSpan.classList.toggle("completed");
+        };
+
+        // Create the “Delete” button
+        const deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "Delete";
+        deleteBtn.className = "delete-btn";
+
+        // When delete button is clicked → remove this task
+        deleteBtn.onclick = () => {
+            li.remove();
+        };
+
+        // Create a small container for the two buttons
+        const btnContainer = document.createElement("div");
+        btnContainer.appendChild(completeBtn);
+        btnContainer.appendChild(deleteBtn);
+
+        // Add task name and buttons to the <li>
+        li.appendChild(taskSpan);
+        li.appendChild(btnContainer);
+
+        // Finally, add this <li> to the task list
+        taskList.appendChild(li);
+
+        // Clear the input box after adding
+        taskInput.value = "";
+    }
+</script>
+
+</body>
+</html>
