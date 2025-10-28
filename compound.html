@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Compound Interest Calculator</title>
+    <script>
+        function calculateCompoundInterest() {
+            // Get values from text fields
+            let principal = parseFloat(document.getElementById("principal").value);
+            let rate = parseFloat(document.getElementById("rate").value);
+            let time = parseFloat(document.getElementById("time").value);
+            let n = parseFloat(document.getElementById("n").value); // number of times interest applied per year
+
+            // Validate inputs
+            if (isNaN(principal) || isNaN(rate) || isNaN(time) || isNaN(n)) {
+                document.getElementById("result").innerHTML = "⚠️ Please enter valid numbers in all fields.";
+                return;
+            }
+
+            // Convert rate to decimal
+            let r = rate / 100;
+
+            // Calculate compound interest
+            let amount = principal * Math.pow((1 + r / n), n * time);
+            let compoundInterest = amount - principal;
+
+            // Display result
+            document.getElementById("result").innerHTML = `
+                💰 Total Amount: ₹${amount.toFixed(2)} <br>
+                💵 Compound Interest: ₹${compoundInterest.toFixed(2)}
+            `;
+        }
+    </script>
+</head>
+<body style="font-family: Arial; margin: 30px;">
+    <h2>Compound Interest Calculator</h2>
+
+    <label>Principal Amount :</label>
+    <input type="text" id="principal"><br><br>
+
+    <label>Rate of Interest (% per annum):</label>
+    <input type="text" id="rate"><br><br>
+
+    <label>Time (in years):</label>
+    <input type="text" id="time"><br><br>
+
+    <label>Number of times interest is compounded per year (n):</label>
+    <input type="text" id="n" placeholder="e.g. 1 for yearly, 4 for quarterly"><br><br>
+
+    <button onclick="calculateCompoundInterest()">Calculate</button>
+
+    <p id="result" style="font-weight: bold; color: green;"></p>
+</body>
+</html>

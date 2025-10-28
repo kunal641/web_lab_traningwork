@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Average Calculator</title>
+    <script>
+     //function for calaculting average
+        function calculateAverage() {
+            // Get values from text fields
+            let num1 = parseFloat(document.getElementById("num1").value);
+            let num2 = parseFloat(document.getElementById("num2").value);
+            let num3 = parseFloat(document.getElementById("num3").value);
+
+            // Check if all inputs are numbers
+            if (isNaN(num1) || isNaN(num2) || isNaN(num3)) {
+                document.getElementById("result").innerHTML = "Please enter valid numbers in all fields.";
+                return;
+            }
+
+            // Calculate average
+            let average = (num1 + num2 + num3) / 3;
+
+            // Display result
+            document.getElementById("result").innerHTML = "The average is: " + average.toFixed(2);
+        }
+    </script>
+</head>
+<body>
+      
+    <h2>Average Calculator</h2>
+<!-- input of  first number-->
+    <label>Enter first number:</label>
+    <input type="text" id="num1"><br><br>
+<!--input of second number-->
+    <label>Enter second number:</label>
+    <input type="text" id="num2"><br><br>
+<!--input of third number-->
+    <label>Enter third number:</label>
+    <input type="text" id="num3"><br><br>
+<!--inputof fourth number-->
+    <label>Enter fourth number:</label>
+    <input type="text" id="num1"><br><br>
+<!--input of fifth number-->
+    <label>Enter fifth number:</label>
+    <input type="text" id="num1"><br><br>
+<!--button for calculating  average-->
+    <button onclick="calculateAverage()">Calculate Average</button>
+<!-- Paragraph to display the average-->
+    <p id="result"></p>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Speed Calculator</title>
+    <script>
+        function calculateSpeed() {
+            // Get values from text fields
+            let distance = parseFloat(document.getElementById("distance").value);
+            let time = parseFloat(document.getElementById("time").value);
+
+            // Validate inputs
+            if (isNaN(distance) || isNaN(time) || time <= 0) {
+                document.getElementById("result").innerHTML = "⚠️ Please enter valid positive numbers for both distance and time.";
+                return;
+            }
+
+            // Calculate speed
+            let speed = distance / time;
+
+            // Display result
+            document.getElementById("result").innerHTML = `🚗 Speed = ${speed.toFixed(2)} units per hour`;
+        }
+    </script>
+</head>
+<body style="font-family: Arial; margin: 30px;">
+    <h2>Speed Calculator</h2>
+
+    <label>Enter Distance (in km):</label>
+    <input type="text" id="distance"><br><br>
+
+    <label>Enter Time (in hours):</label>
+    <input type="text" id="time"><br><br>
+
+    <button onclick="calculateSpeed()">Calculate Speed</button>
+
+    <p id="result" style="font-weight: bold; color: blue;"></p>
+</body>
+</html>
